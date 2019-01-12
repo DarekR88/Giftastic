@@ -40,6 +40,7 @@ var playingGif = false;
 // funciton for creating a query based on the button clicked 
 $(document).on('click','.gifButton',function(){
    $("#gifs").empty();
+   $("#gifsTwo").empty();
    toon = $(this).attr("toonName");
    var giphyUrl = "https://api.giphy.com/v1/gifs/search?q=" + toon + "&api_key=fk15UAOOrgq9oDZfXGgEc9XPVbDuh715&limit=10";
    console.log(toon);
@@ -57,7 +58,12 @@ $(document).on('click','.gifButton',function(){
       // variable that holds the url of animated gif
       gifPlaying = response.data[i].images.original.url
       // add the still images to the html
-      $("#gifs").append("<figure><img class='stillGif' id='playGif' src= " + still + " animated=" + gifPlaying + " stillImage=" + still + " imageState='notPlaying' height='200' width='200'><figcaption>Rating: " + rating + "</figcaption></figure>");
+      if (i <= 4){
+        $("#gifs").append("<figure><img class='stillGif' id='playGif' src= " + still + " animated=" + gifPlaying + " stillImage=" + still + " imageState='notPlaying' height='200' width='200'><figcaption>Rating: " + rating + "</figcaption></figure>");
+      } else {
+        $("#gifsTwo").append("<figure><img class='stillGif' id='playGif' src= " + still + " animated=" + gifPlaying + " stillImage=" + still + " imageState='notPlaying' height='200' width='200'><figcaption>Rating: " + rating + "</figcaption></figure>");
+      }
+
       // gifStill = $("#gifs").append("<img class='stillGif' id= 'playGif" + i + "' src= " + still + " height='200' width='200'><p>Rating: " + rating + "</p>");
       
     };  
