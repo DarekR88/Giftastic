@@ -1,12 +1,18 @@
 // array of cartoon characters for the buttons that will show up on the page
 var loadGifs = ["Bugs Bunny", "Daffy Duck", "Elmer Fudd", "Yosemite Sam", "Tweety Bird", "Foghorn Leghorn", "Sylvester the cat"];
 
+// when the page loads the "more gifs" button is hidden
+$(document).ready(function(){
+  $(".addGifs").hide();
+});
+
 // for loop that creates a button for the cartoon characters in the loadGifs array
 function makeButtons() {
   $("#buttons").empty();
   for (var i = 0; i < loadGifs.length; i++) {
     var gifBtn = $("<button>");
     gifBtn.addClass("gifButton");
+    gifBtn.addClass("btn btn-success");
     gifBtn.attr("toonName", loadGifs[i]);
     $(gifBtn).text(loadGifs[i]);
     $("#buttons").append(gifBtn);
@@ -42,6 +48,7 @@ var still;
 var playingGif = false;
 // funciton for creating a query based on the button clicked 
 $(document).on('click', '.gifButton', function () {
+  $(".addGifs").show();
   $("#gifs").empty();
   $("#gifsTwo").empty();
   limit = 10;
@@ -96,10 +103,10 @@ $(".addGifs").click(function () {
         $("#gifs").append("<figure><img class='stillGif' id='playGif' src= " + still + " animated=" + gifPlaying + " stillImage=" + still + " imageState='notPlaying' height='200' width='300'><figcaption>Rating: " + rating + "</figcaption></figure>");
       } else if (i > (limit - 6)) {
         $("#gifsTwo").append("<figure><img class='stillGif' id='playGif' src= " + still + " animated=" + gifPlaying + " stillImage=" + still + " imageState='notPlaying' height='200' width='300'><figcaption>Rating: " + rating + "</figcaption></figure>");
-      }
-    }
-  })
-})
+      };
+    };
+  });
+});
 
 $(document).on('click', '.stillGif', function () {
   state = $(this).attr("imageState")
